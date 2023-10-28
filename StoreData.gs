@@ -3,11 +3,11 @@ function getFromGa4() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("結果を出力するシート名を書いて下さい");
 
   try {
-    // メトリクス（値）、複数指定可能
+    // 指標、複数指定可能
     const metric1 = AnalyticsData.newMetric();
     metric1.name = "eventCount";
 
-    // ディメンション（指標）、複数指定可能
+    // ディメンション、複数指定可能
     const dimension1 = AnalyticsData.newDimension();
     dimension1.name = "pagePath";
 
@@ -38,6 +38,9 @@ function getFromGa4() {
     request.metrics = [metric1];
     request.dateRanges = [dateRange];
     // その他の設定（フィルタやソートなど）もここでrequestに設定してください。
+    // 今回はフィルターとソートを使用していないので、下記2行でコメントアウトしてあります。
+    // request.dimensionFilter = filter;
+    // request.orderBys = order;
 
     // API 実行（ここから下は書き替え不要）
     const report = AnalyticsData.Properties.runReport(request,
